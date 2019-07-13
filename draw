@@ -1,0 +1,113 @@
+import matplotlib.pyplot as plt
+import numpy as np
+
+
+# 定义画散点图的函数
+def draw_scatter():
+	"""
+	:param n: 点的数量，整数
+	:param s:点的大小，整数
+	:return: None
+	"""
+	# 加载数据
+	#data = np.loadtxt('all_Bert_7class_IntentDetectionOutput.txt', encoding='utf-8', delimiter=';')
+	#data = np.loadtxt('no_Bert_7class_IntentDetectionOutput.txt', encoding='utf-8', delimiter=';')
+	#data = np.loadtxt('no_Dict_7class_IntentDetectionOutput.txt', encoding='utf-8', delimiter=';')
+	#data = np.loadtxt('no_fine_bert_7class_IntentDetectionOutput.txt', encoding='utf-8', delimiter=';')
+	data = np.loadtxt('all_IntentDetectionOutput.txt', encoding='utf-8', delimiter=';')
+	#data = np.loadtxt('noBert_IntentDetectionOutput.txt', encoding='utf-8', delimiter=';')
+	#data = np.loadtxt('noDict_Bert_IntentDetectionOutput.txt', encoding='utf-8', delimiter=';')
+	#data = np.loadtxt('noFine_Bert_IntentDetectionOutput.txt', encoding='utf-8', delimiter=';')
+	#data = np.loadtxt('focal_loss_allbert_IntentDetectionOutput.txt', encoding='utf-8', delimiter=';')
+	#data = np.loadtxt('jiaochashangloss_7class_allbert_IntentDetectionOutput.txt', encoding='utf-8', delimiter=';')
+	# 通过切片获取横坐标x1
+	x1=[]
+	y1=[]
+	x2 = []
+	y2 = []
+	x3 = []
+	y3 = []
+	x4 = []
+	y4 = []
+	x5 = []
+	y5 = []
+	x6 = []
+	y6 = []
+	x7 = []
+	y7 = []
+	x8 = []
+	y8 = []
+
+	for i in data:
+		#print (i[0])
+		if i[0]== 1.0 :
+			x1.append(i[1])
+			# 通过切片获取纵坐标R
+			y1.append(i[2])
+		if i[0]== 2.0:
+			x2.append(i[1])
+			# 通过切片获取纵坐标R
+			y2.append(i[2])
+		if i[0]==3.0:
+			x3.append(i[1])
+			# 通过切片获取纵坐标R
+			y3.append(i[2])
+		if i[0]==4.0:
+			x4.append(i[1])
+			# 通过切片获取纵坐标R
+			y4.append(i[2])
+		if i[0]==5.0:
+			x5.append(i[1])
+			# 通过切片获取纵坐标R
+			y5.append(i[2])
+		if i[0]==6.0:
+			x6.append(i[1])
+			# 通过切片获取纵坐标R
+			y6.append(i[2])
+		if i[0]==7.0:
+			x7.append(i[1])
+			# 通过切片获取纵坐标R
+			y7.append(i[2])
+		if i[0]==8.0:
+			x8.append(i[1])
+			# 通过切片获取纵坐标R
+			y8.append(i[2])
+	#print(x1,"x",y1)
+	#fig=plt.figure(figsize=(6.3, 5))#z这个是7分类的对应large的时框刚好是正方形
+	#fig = plt.figure(figsize=(6.80, 5))
+	fig=plt.figure(figsize=(6.54, 5))
+	ax = fig.add_subplot(1, 1, 1)
+
+
+	d3=plt.scatter(x3, y3, s=1,c='r',marker='o')
+	d4=plt.scatter(x4, y4, s=1,c='orange',marker='o')
+
+
+
+
+	d1=plt.scatter(x1, y1, s=1,c='b',marker='o')
+
+
+	d2=plt.scatter(x2, y2, s=1, c='violet',marker='o')
+	d5=plt.scatter(x5, y5, s=1, c='g', marker='o')
+
+
+	d7=plt.scatter(x7, y7, s=1,c='yellowgreen',marker='o')
+	d8=plt.scatter(x8, y8,s=1, c='purple', marker='o')
+	d6=plt.scatter(x6, y6,s=1, c='cyan', marker='o')
+	#plt.bar(1,1)
+	ax.set_xticklabels(['0.0','0.0', '0.2', '0.4', '0.6', '0.8','1.0'], rotation=0, fontsize='xx-large')
+	ax.set_yticklabels(['0.0','0.0', '0.2', '0.4', '0.6', '0.8','1.0'], rotation=0, fontsize='xx-large')
+
+	font1 = {'family': 'Times New Roman',
+			 'weight': 'normal',
+			 'size': 20,
+			 }
+
+	plt.legend(handles=[d1, d2, d3,d4,d5,d6,d7,d8 ],handlelength=(0),markerscale=5,bbox_to_anchor=(1,0.81),prop=font1,labels=['sorrow','anxiety', 'love', 'joy', 'expect', 'anger', 'surprise', 'hate'], loc='best')
+	#plt.legend(handles=[d1, d2, d3,d4,d5,d6,d7 ],handlelength=(0),bbox_to_anchor=(1,0.71),prop=font1,fontsize=  'xxx-large',markerscale=5, labels=['disgust','sadness', 'anger', 'happiness', 'like', 'fear', 'surprise'], loc='best')
+	#large时，bbox_to_anchor刚好为1,0.42
+	plt.show()
+	#plt.save('graptt.png')
+if __name__ == "__main__":
+	draw_scatter()
